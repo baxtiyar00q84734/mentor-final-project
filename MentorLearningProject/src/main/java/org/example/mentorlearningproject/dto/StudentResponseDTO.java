@@ -1,17 +1,19 @@
 package org.example.mentorlearningproject.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-public class StudentDTO {
+@Data
+public class StudentResponseDTO {
 
     private Long id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private LocalDate dateOfBirth;
 }

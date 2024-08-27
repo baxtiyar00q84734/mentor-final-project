@@ -24,7 +24,6 @@ public class Student {
 
     private String lastName;
 
-    //gpt
     @Column(unique = true, nullable = false)
     private String email;
 
