@@ -23,7 +23,6 @@ public class StudentService {
         this.modelMapper = modelMapper;
     }
 
-
     public StudentResponseDTO createStudent(StudentRequestDTO studentRequestDTO) {
         Student student = modelMapper.map(studentRequestDTO, Student.class);
         Student savedStudent = studentRepository.save(student);
@@ -40,7 +39,6 @@ public class StudentService {
         return students.stream()
                 .map(s -> modelMapper.map(s, StudentResponseDTO.class))
                 .toList();
-
     }
 
     public StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO) {
@@ -48,7 +46,6 @@ public class StudentService {
         modelMapper.map(studentRequestDTO, student);
         studentRepository.save(student);
         return modelMapper.map(student, StudentResponseDTO.class);
-
     }
 
     public void deleteStudentById(Long id) throws StudentNotFoundException {
@@ -69,6 +66,5 @@ public class StudentService {
     public StudentResponseDTO getStudentByEmail(String email) {
         Student student = studentRepository.findByEmail(email).orElseThrow();
         return modelMapper.map(student, StudentResponseDTO.class);
-
     }
 }

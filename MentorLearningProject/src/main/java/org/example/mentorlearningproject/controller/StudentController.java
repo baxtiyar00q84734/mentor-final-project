@@ -45,7 +45,6 @@ public class StudentController {
         studentService.deleteStudentById(id);
     }
 
-    // 5 ci task mentor lesson 35 den
 
     @GetMapping("/search/lastName")
     public List<StudentResponseDTO> searchByLastName(@RequestParam String lastName) {
