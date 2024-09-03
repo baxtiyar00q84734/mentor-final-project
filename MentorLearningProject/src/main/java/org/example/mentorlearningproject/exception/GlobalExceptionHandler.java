@@ -1,4 +1,4 @@
-package org.example.mentorlearningproject.controller;
+package org.example.mentorlearningproject.exception;
 
 import org.example.mentorlearningproject.exception.StudentNotFoundException;
 import org.springframework.http.HttpStatus;
