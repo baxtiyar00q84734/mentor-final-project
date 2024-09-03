@@ -21,7 +21,7 @@ public class Student {
     @Column(name="first_name")
     private String firstName;
 
-    @Column(name="first_name")
+    @Column(name="last_nane")
     private String lastName;
 
     @Column(unique = true, nullable = false)
@@ -31,7 +31,7 @@ public class Student {
     private LocalDate dateOfBirth;
 
     @OneToOne
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
