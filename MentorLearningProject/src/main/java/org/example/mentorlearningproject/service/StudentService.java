@@ -1,8 +1,8 @@
 package org.example.mentorlearningproject.service;
 
 
-import org.example.mentorlearningproject.dto.StudentRequestDTO;
-import org.example.mentorlearningproject.dto.StudentResponseDTO;
+import org.example.mentorlearningproject.dto.request.StudentRequestDTO;
+import org.example.mentorlearningproject.dto.response.StudentResponseDTO;
 import org.example.mentorlearningproject.entity.Student;
 import org.example.mentorlearningproject.exception.StudentNotFoundException;
 import org.example.mentorlearningproject.repository.StudentRepository;

@@ -1,7 +1,7 @@
 package org.example.mentorlearningproject.controller;
 
-import org.example.mentorlearningproject.dto.StudentRequestDTO;
-import org.example.mentorlearningproject.dto.StudentResponseDTO;
+import org.example.mentorlearningproject.dto.request.StudentRequestDTO;
+import org.example.mentorlearningproject.dto.response.StudentResponseDTO;
 import org.example.mentorlearningproject.exception.StudentNotFoundException;
 import org.example.mentorlearningproject.service.StudentService;
 import org.springframework.web.bind.annotation.*;
