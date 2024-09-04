@@ -35,7 +35,7 @@ public class Student {
     private Address address;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Book> book;
+    private List<Book> books;
 
     @ManyToMany
     @JoinTable(
@@ -43,7 +43,7 @@ public class Student {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private Set<Course> course;
+    private Set<Course> courses;
 
 
 }

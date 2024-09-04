@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,6 +21,6 @@ public class Course {
 
     private String description;
 
-    @ManyToMany(mappedBy = "course")
+    @ManyToMany(mappedBy = "courses")
     private Set<Student> student;
 }

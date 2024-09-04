@@ -16,7 +16,7 @@ public class StudentRequestDTO {
     private String email;
     private LocalDate dateOfBirth;
 
-    private AddressRequestDTO address;
-    private List<BookRequestDTO> books;
+    private Long addressId;
+    private List<Long> booksIds;
     private Set<Long> courseIds;
 }
