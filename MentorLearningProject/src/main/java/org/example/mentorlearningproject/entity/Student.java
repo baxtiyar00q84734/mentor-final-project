@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -45,5 +46,16 @@ public class Student {
     )
     private Set<Course> courses;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student student)) return false;
+        return Objects.equals(getId(), student.getId()) && Objects.equals(getFirstName(), student.getFirstName()) && Objects.equals(getLastName(), student.getLastName()) && Objects.equals(getEmail(), student.getEmail()) && Objects.equals(getDateOfBirth(), student.getDateOfBirth()) && Objects.equals(getAddress(), student.getAddress()) && Objects.equals(getBooks(), student.getBooks()) && Objects.equals(getCourses(), student.getCourses());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, dateOfBirth);
+    }
 
 }
