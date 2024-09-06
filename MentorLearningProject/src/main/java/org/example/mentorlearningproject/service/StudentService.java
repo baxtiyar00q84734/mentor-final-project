@@ -15,8 +15,6 @@ import org.example.mentorlearningproject.repository.StudentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,25 +39,17 @@ public class StudentService {
 
     public StudentResponseDTO createStudent(StudentRequestDTO studentRequestDTO) {
         Student student = modelMapper.map(studentRequestDTO, Student.class);
-        Address address1 = addressRepository.findById(studentRequestDTO.getAddressId()).orElseThrow();
+        Address address = addressRepository.findById(studentRequestDTO.getAddressId()).orElseThrow();
 
-        List<Book> studentBooks = new ArrayList<>();
-        List<Long> booksIds = studentRequestDTO.getBooksIds();
+        List<Book> studentBooks = studentRequestDTO.getBooksIds().stream()
+                .map(id -> bookRepository.findById(id).orElseThrow())
+                .collect(Collectors.toList());
 
-        for (Long id : booksIds) {
-            Book book = bookRepository.findById(id).orElseThrow();
-            studentBooks.add(book);
-        }
+        Set<Course> studentCourses = studentRequestDTO.getCourseIds().stream()
+                .map(id -> courseRepository.findById(id).orElseThrow())
+                .collect(Collectors.toSet());
 
-        Set<Course> studentCourses = new HashSet<>();
-        Set<Long> courseIds = studentRequestDTO.getCourseIds();
-
-        for (Long id : courseIds){
-            Course course = courseRepository.findById(id).orElseThrow();
-            studentCourses.add(course);
-        }
-
-        student.setAddress(address1);
+        student.setAddress(address);
         student.setBooks(studentBooks);
         student.setCourses(studentCourses);
 
@@ -83,7 +73,7 @@ public class StudentService {
         Student student = studentRepository.findById(id).orElseThrow();
         modelMapper.map(studentRequestDTO, student);
 
-    //    Address address = modelMapper.map(studentRequestDTO.getAddress(), Address.class);
+        //    Address address = modelMapper.map(studentRequestDTO.getAddress(), Address.class);
         Set<Course> courses = courseRepository.findAllById(studentRequestDTO.getCourseIds()).stream().collect(Collectors.toSet());
 
 //        student.setAddress(address);

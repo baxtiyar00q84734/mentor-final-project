@@ -40,6 +40,6 @@ public class Address {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, street, city, state, zipCode); 
+        return Objects.hash(id, street, city, state, zipCode);
     }
 }
