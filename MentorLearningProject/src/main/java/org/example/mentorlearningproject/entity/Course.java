@@ -22,5 +22,5 @@ public class Course {
     private String description;
 
     @ManyToMany(mappedBy = "courses")
-    private Set<Student> student;
+    private Set<Student> students;
 }
