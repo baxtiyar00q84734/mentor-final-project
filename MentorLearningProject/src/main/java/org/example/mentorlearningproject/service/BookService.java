@@ -4,6 +4,7 @@ import org.example.mentorlearningproject.dto.request.BookRequestDTO;
 import org.example.mentorlearningproject.dto.response.BookResponseDTO;
 import org.example.mentorlearningproject.entity.Book;
 import org.example.mentorlearningproject.entity.Student;
+import org.example.mentorlearningproject.exception.BookNotFoundException;
 import org.example.mentorlearningproject.exception.StudentNotFoundException;
 import org.example.mentorlearningproject.repository.BookRepository;
 import org.example.mentorlearningproject.repository.StudentRepository;
@@ -11,7 +12,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -32,6 +32,13 @@ public class BookService {
         return "Successfully added";
     }
 
+    public List<BookResponseDTO> getALl() {
+        List<Book> books = bookRepository.findAll();
+        return books.stream()
+                .map(b -> modelMapper.map(b, BookResponseDTO.class))
+                .toList();
+    }
+
     public List<BookResponseDTO> getBooksByStudentId(Long studentId) throws StudentNotFoundException {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id " + studentId));
@@ -39,5 +46,22 @@ public class BookService {
         return books.stream()
                 .map(b -> modelMapper.map(b, BookResponseDTO.class))
                 .toList();
+    }
+
+    public BookResponseDTO updateBook(Long id, BookRequestDTO bookRequestDTO) throws BookNotFoundException {
+        Book exsistingBook = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with id " + id));
+
+        modelMapper.map(bookRequestDTO, exsistingBook);
+        Book updatedBook = bookRepository.save(exsistingBook);
+
+        return modelMapper.map(updatedBook, BookResponseDTO.class);
+    }
+
+    public void deleteBookById(Long id) throws BookNotFoundException {
+        if (!bookRepository.existsById(id)) {
+            throw new BookNotFoundException("Book not found with id " + id);
+        }
+        bookRepository.deleteById(id);
     }
 }

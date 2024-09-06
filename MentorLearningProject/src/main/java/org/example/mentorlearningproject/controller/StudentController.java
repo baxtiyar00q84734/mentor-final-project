@@ -35,7 +35,7 @@ public class StudentController {
     }
 
     @PutMapping("/update{id}")
-    public StudentResponseDTO updateStudent(@PathVariable Long id, @RequestBody StudentRequestDTO studentRequestDTO) {
+    public StudentResponseDTO updateStudent(@PathVariable Long id, @RequestBody StudentRequestDTO studentRequestDTO) throws StudentNotFoundException {
         return studentService.updateStudent(id, studentRequestDTO);
 
     }

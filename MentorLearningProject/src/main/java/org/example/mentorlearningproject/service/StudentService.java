@@ -69,19 +69,17 @@ public class StudentService {
                 .toList();
     }
 
-    public StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO) {
-        Student student = studentRepository.findById(id).orElseThrow();
-        modelMapper.map(studentRequestDTO, student);
+    public StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO) throws StudentNotFoundException {
+        Student existingStudent = studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id " + id));
 
-        //    Address address = modelMapper.map(studentRequestDTO.getAddress(), Address.class);
-        Set<Course> courses = courseRepository.findAllById(studentRequestDTO.getCourseIds()).stream().collect(Collectors.toSet());
+        modelMapper.map(studentRequestDTO, existingStudent);
+        Student updatedStudent = studentRepository.save(existingStudent);
 
-//        student.setAddress(address);
-        student.setCourses(courses);
-
-        studentRepository.save(student);
-        return modelMapper.map(student, StudentResponseDTO.class);
+        return modelMapper.map(updatedStudent, StudentResponseDTO.class);
     }
+
+
 
     public void deleteStudentById(Long id) throws StudentNotFoundException {
         if (!studentRepository.existsById(id)) {
