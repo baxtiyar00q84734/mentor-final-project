@@ -35,7 +35,8 @@ public class Student {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id")
     private List<Book> books;
 
     @ManyToMany
@@ -46,16 +47,16 @@ public class Student {
     )
     private Set<Course> courses;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Student student)) return false;
-        return Objects.equals(getId(), student.getId()) && Objects.equals(getFirstName(), student.getFirstName()) && Objects.equals(getLastName(), student.getLastName()) && Objects.equals(getEmail(), student.getEmail()) && Objects.equals(getDateOfBirth(), student.getDateOfBirth()) && Objects.equals(getAddress(), student.getAddress()) && Objects.equals(getBooks(), student.getBooks()) && Objects.equals(getCourses(), student.getCourses());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, dateOfBirth);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Student student)) return false;
+//        return Objects.equals(getId(), student.getId()) && Objects.equals(getFirstName(), student.getFirstName()) && Objects.equals(getLastName(), student.getLastName()) && Objects.equals(getEmail(), student.getEmail()) && Objects.equals(getDateOfBirth(), student.getDateOfBirth()) && Objects.equals(getAddress(), student.getAddress()) && Objects.equals(getBooks(), student.getBooks()) && Objects.equals(getCourses(), student.getCourses());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, firstName, lastName, email, dateOfBirth);
+//    }
 
 }

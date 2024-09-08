@@ -24,8 +24,7 @@ public class Book {
     @Column(name = "published_date")
     private LocalDate publishedDate;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
 
 
