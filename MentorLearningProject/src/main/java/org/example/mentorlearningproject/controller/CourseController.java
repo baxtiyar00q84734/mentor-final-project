@@ -1,5 +1,6 @@
 package org.example.mentorlearningproject.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.mentorlearningproject.dto.request.CourseRequestDTO;
 import org.example.mentorlearningproject.dto.response.CourseResponseDTO;
 import org.example.mentorlearningproject.exception.CourseNotFoundException;
@@ -10,13 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("courses")
+@RequiredArgsConstructor
 public class CourseController {
 
     private final CourseService courseService;
 
-    public CourseController(CourseService courseService) {
-        this.courseService = courseService;
-    }
+
 
     @PostMapping("/save")
     public String createCourse(@RequestBody CourseRequestDTO courseRequestDTO) {

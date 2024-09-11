@@ -1,5 +1,6 @@
 package org.example.mentorlearningproject.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.mentorlearningproject.dto.request.StudentRequestDTO;
 import org.example.mentorlearningproject.dto.response.StudentResponseDTO;
 import org.example.mentorlearningproject.exception.StudentNotFoundException;
@@ -10,13 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("students")
+@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
-
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
+    
 
     @PostMapping("/save")
     public StudentResponseDTO createStudent(@RequestBody StudentRequestDTO studentRequestDTO) {

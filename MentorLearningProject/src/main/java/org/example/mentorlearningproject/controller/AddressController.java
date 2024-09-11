@@ -1,5 +1,6 @@
 package org.example.mentorlearningproject.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.mentorlearningproject.dto.request.AddressRequestDTO;
 import org.example.mentorlearningproject.dto.response.AddressResponseDTO;
 import org.example.mentorlearningproject.exception.AddressNotFoundException;
@@ -10,13 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("addresses")
+@RequiredArgsConstructor
 public class AddressController {
 
     private final AddressService addressService;
 
-    public AddressController(AddressService addressService) {
-        this.addressService = addressService;
-    }
 
     @PostMapping("/save")
     public String createAddress(@RequestBody AddressRequestDTO addressRequestDTO) {

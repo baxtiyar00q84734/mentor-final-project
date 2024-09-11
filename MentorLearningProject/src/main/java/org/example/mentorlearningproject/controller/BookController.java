@@ -1,5 +1,6 @@
 package org.example.mentorlearningproject.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.mentorlearningproject.dto.request.BookRequestDTO;
 import org.example.mentorlearningproject.dto.response.BookResponseDTO;
 import org.example.mentorlearningproject.exception.BookNotFoundException;
@@ -11,13 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("books")
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookService bookService;
 
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @PostMapping("/save")
     public String createBook(@RequestBody BookRequestDTO bookRequestDTO) {
