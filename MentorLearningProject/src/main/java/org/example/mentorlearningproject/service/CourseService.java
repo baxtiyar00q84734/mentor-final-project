@@ -1,5 +1,6 @@
 package org.example.mentorlearningproject.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.mentorlearningproject.dto.request.CourseRequestDTO;
 import org.example.mentorlearningproject.dto.response.CourseResponseDTO;
 import org.example.mentorlearningproject.entity.Course;
@@ -12,15 +13,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CourseService {
 
     private final CourseRepository courseRepository;
     private final ModelMapper modelMapper;
 
-    public CourseService(CourseRepository courseRepository, ModelMapper modelMapper) {
-        this.courseRepository = courseRepository;
-        this.modelMapper = modelMapper;
-    }
+
 
     public String createCourse(CourseRequestDTO courseRequestDTO) {
         Course course = modelMapper.map(courseRequestDTO, Course.class);

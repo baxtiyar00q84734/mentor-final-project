@@ -1,6 +1,7 @@
 package org.example.mentorlearningproject.service;
 
 
+import lombok.RequiredArgsConstructor;
 import org.example.mentorlearningproject.dto.request.StudentRequestDTO;
 import org.example.mentorlearningproject.dto.response.StudentResponseDTO;
 import org.example.mentorlearningproject.entity.Address;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
 
     private final StudentRepository studentRepository;
@@ -29,13 +31,6 @@ public class StudentService {
     private final CourseRepository courseRepository;
     private final ModelMapper modelMapper;
 
-    public StudentService(StudentRepository studentRepository, AddressRepository addressRepository, BookRepository bookRepository, CourseRepository courseRepository, ModelMapper modelMapper) {
-        this.studentRepository = studentRepository;
-        this.addressRepository = addressRepository;
-        this.bookRepository = bookRepository;
-        this.courseRepository = courseRepository;
-        this.modelMapper = modelMapper;
-    }
 
     public StudentResponseDTO createStudent(StudentRequestDTO studentRequestDTO) {
         Student student = modelMapper.map(studentRequestDTO, Student.class);

@@ -1,5 +1,6 @@
 package org.example.mentorlearningproject.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.mentorlearningproject.dto.request.AddressRequestDTO;
 import org.example.mentorlearningproject.dto.response.AddressResponseDTO;
 import org.example.mentorlearningproject.entity.Address;
@@ -11,14 +12,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AddressService {
     private final AddressRepository addressRepository;
     private final ModelMapper modelMapper;
 
-    public AddressService(AddressRepository addressRepository, ModelMapper modelMapper) {
-        this.addressRepository = addressRepository;
-        this.modelMapper = modelMapper;
-    }
+
 
     public String createAddress(AddressRequestDTO addressRequestDTO) {
         Address address = modelMapper.map(addressRequestDTO, Address.class);
