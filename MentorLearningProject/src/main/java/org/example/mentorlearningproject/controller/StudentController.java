@@ -15,7 +15,7 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
-    
+
 
     @PostMapping("/save")
     public StudentResponseDTO createStudent(@RequestBody StudentRequestDTO studentRequestDTO) {
