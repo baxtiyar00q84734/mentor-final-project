@@ -17,7 +17,7 @@ public class EmailScheduler {
     private final EmailService emailService;
     private final StudentRepository studentRepository;
 
-    @Scheduled(fixedRate = 10000)
+//    @Scheduled(fixedRate = 10000)
     public void sendScheduledEmail() {
         List<Student> students = studentRepository.findAll();
 
