@@ -1,8 +1,9 @@
 package org.example.mentorlearningproject.service;
 
+
 import lombok.RequiredArgsConstructor;
 import org.example.mentorlearningproject.dto.book.FeignBookRoot;
-import org.example.mentorlearningproject.feign.BookInfoFeignClient;
+import org.example.mentorlearningproject.config.BookInfoFeignClient;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

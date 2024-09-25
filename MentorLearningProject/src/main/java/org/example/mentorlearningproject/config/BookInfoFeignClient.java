@@ -1,4 +1,4 @@
-package org.example.mentorlearningproject.feign;
+package org.example.mentorlearningproject.config;
 
 
 import org.example.mentorlearningproject.dto.book.FeignBookRoot;
