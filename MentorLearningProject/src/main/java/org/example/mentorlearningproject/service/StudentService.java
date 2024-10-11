@@ -33,6 +33,14 @@ public class StudentService {
 
 
     public StudentResponseDTO createStudent(StudentRequestDTO studentRequestDTO) {
+
+        List<Long> bookIds = studentRequestDTO.getBooksIds();
+        if (bookIds != null) {
+            bookIds.stream().forEach(bookId -> {
+                // process bookIds
+            });
+        }
+
         Student student = modelMapper.map(studentRequestDTO, Student.class);
         Address address = addressRepository.findById(studentRequestDTO.getAddressId()).orElseThrow();
 
